@@ -1,17 +1,14 @@
 ﻿  Game.cpp
-C:\Users\nacho\OneDrive\Escritorio\intentando corazon\Proyecto Final\Proyecto Final\Game.h(32,13): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\nacho\OneDrive\Escritorio\intentando corazon\Proyecto Final\Proyecto Final\Game.h(93,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(32,13): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(93,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\nacho\OneDrive\Escritorio\intentando corazon\Proyecto Final\Proyecto Final\Game.cpp(8,11): warning C4101: 'dt': variable local sin referencia
-  Main.cpp
-C:\Users\nacho\OneDrive\Escritorio\intentando corazon\Proyecto Final\Proyecto Final\Game.h(32,13): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\nacho\OneDrive\Escritorio\intentando corazon\Proyecto Final\Proyecto Final\Game.h(93,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(8,11): warning C4101: 'dt': variable local sin referencia
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(165,24): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-  Generando código...
-  Proyecto Final.vcxproj -> C:\Users\nacho\OneDrive\Escritorio\intentando corazon\Proyecto Final\Debug\Proyecto Final.exe
+  Proyecto Final.vcxproj -> C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Debug\Proyecto Final.exe

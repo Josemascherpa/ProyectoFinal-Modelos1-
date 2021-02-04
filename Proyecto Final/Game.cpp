@@ -95,7 +95,7 @@ void Game::Actualizar(float dt)
     if ((nave->rayoCayendo) && (pj->pjon)) {
         ProcesarColisiones(ventana);
     }
-    
+    cout << posRand.x << endl;
 }
 
 
@@ -160,6 +160,20 @@ void Game::ProcesarColisiones(RenderWindow *ventana) {
         nave->rayoCayendo = false;
         
     }
+    if (corazon->getSprite().getGlobalBounds().intersects(pj->getSprite().getGlobalBounds())) {
+        corazon->setPosicion(Vector2f(1000.0f, 1000.0f));
+        posRand.x = 50 + rand() % (599 - 50);//ASDFASDF
+        respCorazon = false;
+        if (contador == 2) {
+            corazoness3->setPosition(210.0f, 5.0f);
+            contador++;
+        }
+        if (contador == 1) {
+            corazoness2->setPosition(180.0f, 5.0f);
+            contador++;
+        }
+
+    }
         
 }
 
@@ -200,7 +214,7 @@ void Game::aparecerCorazon() {
         *tiempoCorazon = sacarCorazon->getElapsedTime();
 
         corazon->setPosicion(posRand);
-        if (tiempoCorazon->asSeconds() > 2.0f) {
+        if (tiempoCorazon->asSeconds() > 2.5f) {
             respCorazon = false;
             corazon->setPosicion(Vector2f(900.0f, 900.0f));
         }

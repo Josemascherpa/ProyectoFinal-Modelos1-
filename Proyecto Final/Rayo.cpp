@@ -11,7 +11,7 @@ Rayo::Rayo(Vector2f nave) {
 	posicion.x = nave.x;
 	posicion.y = nave.y;
 
-	switch (rand() % 10 + 1 ) {
+	switch (rand() % 12 + 1 ) {
 		case 1:
 		 velocidad.y = 100.0f;
 		 aceleracion.y = 100.0f; break;
@@ -51,6 +51,12 @@ Rayo::Rayo(Vector2f nave) {
 		case 10:
 			velocidad.y = 700.0f;
 			aceleracion.y = 800.0f; break;
+		case 11:
+			velocidad.y = 1000.0f;
+			aceleracion.y = 800.0f; break;
+		case 12:
+			velocidad.y = 900.0f;
+			aceleracion.y = 900.0f; break;
 			
 		default:break;
 	}

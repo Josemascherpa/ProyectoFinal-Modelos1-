@@ -91,7 +91,7 @@ public:
 		sacarCorazon = new Clock();
 		tiempoCorazon = new Time();
 		posRand.x = 50 + rand() % (599 - 50);
-		posRand.y = 550.0f;
+		posRand.y = 540.0f;
 		
 	}
 	~Game();//Destructor
