@@ -26,6 +26,7 @@ class Personaje
 		Vector2f getPosition() { return posicion; }
 		Sprite getSprite();
 		bool pjon = true;
+		
 
 	private:
 		Vector2f aceleracion;

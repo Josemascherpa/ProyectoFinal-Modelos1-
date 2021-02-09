@@ -54,3 +54,4 @@ void Personaje::Update(float dt) {
 Sprite Personaje::getSprite() {
 	return  *personajes;
 }
+

@@ -17,6 +17,7 @@ void Game::Loop() {
         Dibujar();// Dibujar el juego
 
         if (juegoterminado == true) {
+            
             break;
         }
 
@@ -29,24 +30,44 @@ void Game::ProcesarEventos()
     while (ventana->pollEvent(event))
     {
         // Cerrar ventana
-        if (event.type == sf::Event::Closed)
-            ventana->close();
-
-        if ((event.type == event.KeyPressed) && (event.key.code == Keyboard::D)) {//evento de tipo apretar tecla, si apretas la D
-            pj->setVelocidad(Vector2f(200.0f, 0.0f));//se le asigna velocidad al sprite
-            
-        }
-        else if ((event.type == event.KeyReleased) && (event.key.code == Keyboard::D)) {//evento de tipo soltar tecla, si soltas la D
-            pj->setVelocidad(Vector2f(0.0f, 0.0f));//se le asigna una velocidad en 0, asi se frena
-        }
-        if ((event.type == event.KeyPressed) && (event.key.code == Keyboard::A)) {
-            pj->setVelocidad(Vector2f(-200.0f, 0.0f));
+        switch (event.type) {
+            case Event::Closed:
+                ventana->close(); break;
+            case Event::KeyPressed:
+                if (event.key.code == Keyboard::D) {
+                    pj->setVelocidad(Vector2f(200.0f, 0.0f));//se le asigna velocidad al sprite
+                }
+                if (event.key.code == Keyboard::A) {
+                    pj->setVelocidad(Vector2f(-200.0f, 0.0f));
+                }break;
+                               
+            case Event::KeyReleased:
+                if (event.key.code == Keyboard::D) {
+                    pj->setVelocidad(Vector2f(0.0f, 0.0f));//se le asigna una velocidad en 0, asi se frena
+                }
+                if ((event.type == event.KeyReleased) && (event.key.code == Keyboard::A)) {
+                    pj->setVelocidad(Vector2f(0.0f, 0.0f));
+                }break;
+            case Event::MouseButtonPressed:
+                if (event.mouseButton.button == Mouse::Button::Left) {
+                    if (presionBoton()) {
+                        restart();
+                        
+                    }
+                }break;
+            default:break;
            
-        }
-        else if ((event.type == event.KeyReleased) && (event.key.code == Keyboard::A)) {
-            pj->setVelocidad(Vector2f(0.0f, 0.0f));
-        }
+                
+
+
+
+
+        }           
+                
         
+       
+
+         
     }
 
 }
@@ -95,7 +116,7 @@ void Game::Actualizar(float dt)
     if ((nave->rayoCayendo) && (pj->pjon)) {
         ProcesarColisiones(ventana);
     }
-    cout << posRand.x << endl;
+    
 }
 
 
@@ -106,6 +127,8 @@ void Game::Dibujar()
 
     // Dibujar el sprite
     ventana->draw(fondos);
+
+    ventana->draw(*botons);
 
     nave->Draw(ventana);
 
@@ -149,7 +172,7 @@ void Game::ProcesarColisiones(RenderWindow *ventana) {
         }
         else if (contador <= 0) {
             corazoness1->setPosition(3000, 3000);
-
+            nave->setPosicion(Vector2f(3000.0f, 3000.0f));
             terminar->restart().asSeconds();
 
             perdiste->play();
@@ -162,7 +185,7 @@ void Game::ProcesarColisiones(RenderWindow *ventana) {
     }
     if (corazon->getSprite().getGlobalBounds().intersects(pj->getSprite().getGlobalBounds())) {
         corazon->setPosicion(Vector2f(1000.0f, 1000.0f));
-        posRand.x = 50 + rand() % (599 - 50);//ASDFASDF
+        posRand.x = 50 + rand() % (599 - 50);
         respCorazon = false;
         if (contador == 2) {
             corazoness3->setPosition(210.0f, 5.0f);
@@ -221,5 +244,17 @@ void Game::aparecerCorazon() {
         
     }
     
+}
+
+
+
+
+bool Game::presionBoton() {
+    posicion_mouse = Mouse::getPosition(*ventana);
+    posicion_mouse = (Vector2i)ventana->mapPixelToCoords(posicion_mouse);
+    Vector2f mousepos = (Vector2f)posicion_mouse;
+    
+    return botons->getGlobalBounds().contains(mousepos.x, mousepos.y);
+        
 }
 Game::~Game() {}

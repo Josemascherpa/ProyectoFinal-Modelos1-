@@ -6,10 +6,20 @@
 using namespace std;
 
 int main() {
+	bool restart = false;
 	
-	Game G;
-	
-	G.Loop();
+	do {
+		Game G;
 
+		G.Loop();
+
+		if (G.restart()) {
+			restart = true;
+			
+		}else {
+			restart = false;
+		}
+	} while (restart == false);
+	
 	return 0;
 }

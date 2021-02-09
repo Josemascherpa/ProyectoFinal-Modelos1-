@@ -92,6 +92,15 @@ public:
 		tiempoCorazon = new Time();
 		posRand.x = 50 + rand() % (599 - 50);
 		posRand.y = 540.0f;
+
+		//Boton Restart
+		botont = new Texture();
+		botons = new Sprite();
+		botont->loadFromFile("boton.png");
+		botons->setTexture(*botont);		
+		botons->setPosition(750.0f, 0.0f);
+
+
 		
 	}
 	~Game();//Destructor
@@ -103,6 +112,8 @@ public:
 	void terminarJuego();
 	void aparecerCorazon();
 	
+	bool presionBoton();
+	bool restart() { return true; };
 private:
 	//topes nave
 	Vector2f tope;
@@ -149,9 +160,12 @@ private:
 
 	Clock* terminar;
 	Time* timeTerminar;
+
+	//Boton restart
+	Vector2i posicion_mouse;
+	Texture* botont;
+	Sprite* botons;
 	
-
-
 };
 
 
