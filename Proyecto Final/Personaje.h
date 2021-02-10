@@ -20,11 +20,10 @@ class Personaje
 		Texture* personajet2;
 		void Draw(RenderWindow* _ventana);//Dibujar
 		void Update(float dt);//Comportamiento fisico
-		void setPosicion(Vector2f pos) { posicion = pos; }
-		void setVelocidad(Vector2f vel) { velocidad = vel; }
-		void setAceleracion(Vector2f acc) { aceleracion = acc; }
-		Vector2f getPosition() { return posicion; }
-		Sprite getSprite();
+		void setPosicion(Vector2f pos) { posicion = pos; }//seteo de posicion.
+		void setVelocidad(Vector2f vel) { velocidad = vel; }//Seteo velocidad para el movimiento con letras.
+		Vector2f getPosition() { return posicion; }//retorno posicion.
+		Sprite getSprite();//retorno sprite.
 		bool pjon = true;
 		
 

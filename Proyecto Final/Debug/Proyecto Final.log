@@ -1,12 +1,18 @@
-﻿  Game.cpp
+﻿  Corazon.cpp
+  Game.cpp
 C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(28,13): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(89,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(88,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
 C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(8,11): warning C4101: 'dt': variable local sin referencia
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(164,24): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(165,24): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(210,28): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
@@ -14,10 +20,13 @@ C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Fin
 C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(230,14): warning C4553: "==": el resultado de la expresión no se usa. ¿Quiso decir "="?
   Main.cpp
 C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(28,13): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(89,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(88,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
+  Nave.cpp
+  Personaje.cpp
+  Rayo.cpp
   Generando código...
   Proyecto Final.vcxproj -> C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Debug\Proyecto Final.exe

@@ -20,7 +20,7 @@ public:
 	void Update(float dt);//actualizo la posicion en el eje Y.
 	void setPosicion(Vector2f pos);//Seteo su posicion bajo la nave.
 	Vector2f getPosition() { return posicion; };//devuelvo la posicion del rayo
-	Sprite getSprite();
+	Sprite getSprite();//retorno el sprite d rayo
 
 private:
 	Vector2f aceleracion;

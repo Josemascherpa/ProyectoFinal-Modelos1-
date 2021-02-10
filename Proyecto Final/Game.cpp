@@ -31,29 +31,27 @@ void Game::ProcesarEventos()
     {
         // Cerrar ventana
         switch (event.type) {
-            case Event::Closed:
+            case Event::Closed://Cerrar ventana
                 ventana->close(); break;
-            case Event::KeyPressed:
+            case Event::KeyPressed://si presiono la letra D, seteo velocidad al sprite, lo cual afecta su posicion.
                 if (event.key.code == Keyboard::D) {
                     pj->setVelocidad(Vector2f(200.0f, 0.0f));//se le asigna velocidad al sprite
                 }
-                if (event.key.code == Keyboard::A) {
+                if (event.key.code == Keyboard::A) {//si presiono la letra A, seteo velocidad al sprite, lo cual afecta su posicion.
                     pj->setVelocidad(Vector2f(-200.0f, 0.0f));
                 }break;
                                
-            case Event::KeyReleased:
+            case Event::KeyReleased://Si suelto la letra, se le asigna velocidad 0 para frenarlo o dejarlo quieto.
                 if (event.key.code == Keyboard::D) {
                     pj->setVelocidad(Vector2f(0.0f, 0.0f));//se le asigna una velocidad en 0, asi se frena
                 }
-                if ((event.type == event.KeyReleased) && (event.key.code == Keyboard::A)) {
+                if (event.key.code == Keyboard::A) {
                     pj->setVelocidad(Vector2f(0.0f, 0.0f));
                 }break;
-            case Event::MouseButtonPressed:
+            case Event::MouseButtonPressed://Si presiono el boton izquiero del mouse y colisiona con el boton, reseteo juego.
                 if (event.mouseButton.button == Mouse::Button::Left) {
-                    if (presionBoton()) {
+                    if (presionBoton()) {//si presiono boton es true, osea, retorna el getglobal del sprite en colision con el mouse.
                         Restart();
-                        cout << "Apredato" << endl;
-                        
                     }
                 }break;
             default:break;              
@@ -64,7 +62,7 @@ void Game::ProcesarEventos()
 }
 void Game::Actualizar(float dt)
 {        
-    if (pasaronSeg == true) {
+    if (pasaronSeg == true) {//Termino juego.
         terminarJuego();
     }
     //NAVE
@@ -79,26 +77,29 @@ void Game::Actualizar(float dt)
     else if (nave->getPosicion().x <= inicio.x) {
         nave->setVelocidad(Vector2f(50.0f, 0.0f));//setea velocidad negativa, para que vuelva hacia el otro lado.
         nave->setAceleracion(Vector2f(50.0f, 0.0f));//setea la aceleracion para que tenga mas velocidad.
-        nave->setTextura2("nave.png");
+        nave->setTextura2("nave.png");//Cambio de sprite para que aparezca en base al lado que se dirige.
         vueltaNave->play();
     }
     //PERSONAJE
-    pj->Update(dt);    
+    pj->Update(dt);   
+
     //RAYO  
     if ((nave->rayoCayendo != true)) {//Si el rayo no esta cayendo, llamo el metodo tirar rayo, y pongo rayo cayendo en true.
-        rayo = nave->tirarRayo();
+        rayo = nave->tirarRayo();//instancio un rayo bajo la nave, retornandolo con un metodo de estilo rayo.
         nave->rayoCayendo = true;
         caidaRayo->play();
         
     }    
     rayo->Update(dt);
-    aparecerCorazon();
-    if (rayo->getPosition().y > 600.0f) {//Si rayo supera los 600 en el eje Y, lo rayo cayendo en false.
+
+    aparecerCorazon();//respawneo corazon random, al tener menos de 3 vidas.
+
+    if (rayo->getPosition().y > 600.0f) {//Si rayo supera los 600 en el eje Y, coloco rayo cayendo en false, al hacer esto, se vuelve a respawnear
         nave->rayoCayendo = false;
 
     }       
-    if ((nave->rayoCayendo) && (pj->pjon)) {
-        ProcesarColisiones(ventana);
+    if ((nave->rayoCayendo) && (pj->pjon)) {//detecto colisiones siempre y cuando, haya un rayo cayendo y el pj on.
+        ProcesarColisiones();
     }
     
 }
@@ -121,7 +122,7 @@ void Game::Dibujar()
     
     corazon->Draw(ventana);
 
-    if (pasaronSeg == true) {
+    if (pasaronSeg == true) {//Dibujo el sprite perdiste, y silencio los sonidos.
         ventana->draw(*perdistes);
         vueltaNave->stop();
         caidaRayo->stop();
@@ -134,13 +135,13 @@ void Game::Dibujar()
     ventana->display();
 }
 
-void Game::ProcesarColisiones(RenderWindow *ventana) {
+void Game::ProcesarColisiones() {
 
-    if (rayo->getSprite().getGlobalBounds().intersects(pj->getSprite().getGlobalBounds())) {
+    if (rayo->getSprite().getGlobalBounds().intersects(pj->getSprite().getGlobalBounds())) {//si rayo se intersecta con el limite de imagen del pj
         
-        contador--;
+        contador--;//Una vida menos
         if (contador == 2) {
-            corazoness3->setPosition(3000, 3000);
+            corazoness3->setPosition(3000, 3000);//el primer corazon lo saco de pantalla
 
         }
         else if (contador == 1) {
@@ -151,19 +152,19 @@ void Game::ProcesarColisiones(RenderWindow *ventana) {
         }
         else if (contador <= 0) {
             corazoness1->setPosition(3000, 3000);
-            nave->setPosicion(Vector2f(3000.0f, 3000.0f));
+            nave->setPosicion(Vector2f(3000.0f, 3000.0f));//saco nave de pantalla.
             terminar->restart().asSeconds();
             perdiste->play();
-            pasaronSeg = true;
+            pasaronSeg = true;//Al pasar ciertos segundos, cierro la ventana.
 
         }
-        nave->rayoCayendo = false;
+        nave->rayoCayendo = false;//pongo rayo cayendo el false, para volverlo a respawnear.
     }
-    if (corazon->getSprite().getGlobalBounds().intersects(pj->getSprite().getGlobalBounds())) {
-        corazon->setPosicion(Vector2f(1000.0f, 1000.0f));
-        posRand.x = 50 + rand() % (599 - 50);
-        respCorazon = false;
-        if (contador == 2) {
+    if (corazon->getSprite().getGlobalBounds().intersects(pj->getSprite().getGlobalBounds())) {//Si corazon se intersecta con el jugador.
+        corazon->setPosicion(Vector2f(1000.0f, 1000.0f));//Saco el corazon de pantalla
+        posRand.x = 50 + rand() % (599 - 50);//Y saco un nuevo rand;
+        respCorazon = false; //pongo en false para que se vuelva a respawnear.
+        if (contador == 2) {//sumo vida y seteo el corazon nuevamente en su posicion.
             corazoness3->setPosition(210.0f, 5.0f);
             contador++;
         }
@@ -176,25 +177,23 @@ void Game::ProcesarColisiones(RenderWindow *ventana) {
         
 }
 
-void Game::terminarJuego(){
+void Game::terminarJuego(){//Metodo termina juego, si pasaron unos segundos, pongo el booleano en true y salgo del juego.
     
-    *timeTerminar = terminar->getElapsedTime();
+    *timeTerminar = terminar->getElapsedTime();//el tiempo que paso, lo guardo en timeterminar.
 
-    if (timeTerminar->asSeconds() >= 2.0f && contador<=0) {
+    if (timeTerminar->asSeconds() >= 2.0f && contador<=0) {//si ese tiempo transcurrido en segundos, es mayor o igual a 2 Float y el contador es 0, terminar juego.
                 
         juegoterminado = true;
 
     }
-    cout << timeTerminar->asSeconds() << endl;
-
-
+    
 }
 
-void Game::aparecerCorazon() { 
+void Game::aparecerCorazon() { //Metodo que aparece corazon de forma random, para obtener vidas perdidas.
 
     if (contador <= 2) {
         int numRand = rand() % 600 + 1;
-        if (numRand == 4 && respCorazon == false) {
+        if (numRand == 4 && respCorazon == false) {//Si el numero random es 4 y respawnear coraon es falso, respawnea corazon y el tiempo lo reinicia para respawnearo otro.
             respCorazon = true;
             sacarCorazon->restart().asSeconds();
             
@@ -202,13 +201,13 @@ void Game::aparecerCorazon() {
         
     }
     
-    if (respCorazon == true) {
-          
-
+    if (respCorazon == true) {//Si es true, tiempo corazon lo iguala al  tiempo transcurrido en sacar corazon, y sea corazon en una posicion rand
+          //luego de unos segundos , si el personaje no colisiona, se saca el corazon.
         *tiempoCorazon = sacarCorazon->getElapsedTime();
 
-        corazon->setPosicion(posRand);
+        corazon->setPosicion(posRand);//seteo la posicion random a corazon
         if (tiempoCorazon->asSeconds() > 2.5f) {
+            posRand.x = 50 + rand() % (599 - 50);
             respCorazon = false;
             corazon->setPosicion(Vector2f(900.0f, 900.0f));
         }
@@ -217,7 +216,8 @@ void Game::aparecerCorazon() {
     
 }
 
-bool Game::presionBoton() {
+bool Game::presionBoton() {//recupero la posicion del mouse en la ventana, y la paso de pixel a coordenadas, y la guardo en un vector2f
+    //Para utilizarla retornando en getglobalbounds del sprite(boton) y detectar si se presiona dentro.
     posicion_mouse = Mouse::getPosition(*ventana);
     posicion_mouse = (Vector2i)ventana->mapPixelToCoords(posicion_mouse);
     Vector2f mousepos = (Vector2f)posicion_mouse;
@@ -226,12 +226,13 @@ bool Game::presionBoton() {
         
 }
 
-void Game::Restart() {
+void Game::Restart() {//Al presionar el boton, se ejecuta el metodo y reinciia las variables.
     contador == 3;
     corazoness1->setPosition(150.0f, 5.0f);
     corazoness2->setPosition(180.0f, 5.0f);
     corazoness3->setPosition(210.0f, 5.0f);
     nave->setPosicion(Vector2f(0.0f, 0.0f));
+    nave->rayoCayendo = false;
     pj->setPosicion(Vector2f(300.0f, 426.0f));
     
 }

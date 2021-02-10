@@ -11,7 +11,7 @@ Rayo::Rayo(Vector2f nave) {
 	posicion.x = nave.x;
 	posicion.y = nave.y;
 
-	switch (rand() % 13 + 1 ) {
+	switch (rand() % 13 + 1 ) {//Velocidad random cada vez que instancio un rayo.
 		case 1:
 		 velocidad.y = 100.0f;
 		 aceleracion.y = 100.0f; break;
@@ -72,7 +72,7 @@ void Rayo::Draw(RenderWindow* ventana) {
 	ventana->draw(*rayos);
 }
 
-void Rayo::Update(float dt) {
+void Rayo::Update(float dt) {//Caida del rayo en base a su posicion.
 
 	velocidad.y += aceleracion.y * dt;
 	posicion.y += velocidad.y * dt;

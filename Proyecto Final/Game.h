@@ -36,13 +36,13 @@ public:
 		inicio.y = 0;
 
 		//PERSONAJE
-		pj = new Personaje("pj.png");
+		pj = new Personaje("pj.png");//Instancio personaje.
 				
 		//SONIDOS
 		vueltaNave = new Sound;
-		bufferNave = new SoundBuffer;
-		bufferNave->loadFromFile("vueltanave.wav");
-		vueltaNave->setBuffer(*bufferNave);
+		bufferNave = new SoundBuffer;//Seteo de buffer sonido nave.
+		bufferNave->loadFromFile("vueltanave.wav");//seteo sonido
+		vueltaNave->setBuffer(*bufferNave);//seteo el buffer en el sonido
 		vueltaNave->setVolume(5.0f);
 		bufferRayo = new SoundBuffer;
 		caidaRayo = new Sound;
@@ -55,12 +55,12 @@ public:
 		perdiste->setBuffer(*bufferPerdiste);
 
 		//VIDAS
-		vidast = new Texture;
+		vidast = new Texture;//Textura sprite Vidas:
 		vidass = new Sprite;
 		vidast->loadFromFile("vidas.png");
 		vidass->setTexture(*vidast);
 		vidass->setPosition(0.0f, 7.0f);
-		corazonest = new Texture;
+		corazonest = new Texture;//Textura corazones
 		corazoness1 = new Sprite;
 		corazoness2 = new Sprite;
 		corazoness3 = new Sprite;
@@ -68,29 +68,28 @@ public:
 		corazoness1->setTexture(*corazonest);
 		corazoness2->setTexture(*corazonest);
 		corazoness3->setTexture(*corazonest);
-		corazoness1->setPosition(150.0f, 5.0f);
+		corazoness1->setPosition(150.0f, 5.0f);//posiciono los corazones
 		corazoness2->setPosition(180.0f, 5.0f);
 		corazoness3->setPosition(210.0f, 5.0f);
 
 		//TERMINAR JUEGO
-		terminar = new Clock();
+		terminar = new Clock();//timing para terminar el juego.
 		timeTerminar = new Time();
-		perdistes = new Sprite();
+		perdistes = new Sprite();//Sprite al finalizar el juego.
 		perdistet = new Texture();
-
 		perdistet->loadFromFile("perdiste.png");
 		perdistes->setTexture(*perdistet);		
 		perdistes->setPosition(200.0f, 200.0f);
 		
 		//Corazon
-		corazon = new Corazon();
-		sacarCorazon = new Clock();
+		corazon = new Corazon();//Instancio corazon luego de perder 1 vida, para poder recuperarlas.
+		sacarCorazon = new Clock();//Timing para que aparezca cada cierto tiempo.
 		tiempoCorazon = new Time();
-		posRand.x = 50 + rand() % (599 - 50);
-		posRand.y = 540.0f;
+		posRand.x = 50 + rand() % (599 - 50);//Posicion random donde aparecer.
+		posRand.y = 540.0f;//que siempre aparezca a la misma altura en el eje Y.
 
 		//Boton Restart
-		botont = new Texture();
+		botont = new Texture();//Textura boton restart.
 		botons = new Sprite();
 		botont->loadFromFile("boton.png");
 		botons->setTexture(*botont);		
@@ -104,8 +103,8 @@ public:
 	void ProcesarEventos();
 	void Actualizar(float dt);
 	void Dibujar();
-	void ProcesarColisiones(RenderWindow* ventan);
-	void terminarJuego();
+	void ProcesarColisiones();//Metodo que maneja las colisiones
+	void terminarJuego();//Metodo terminar juego, luego de un tiempo, pone un booleano en true.
 	void aparecerCorazon();	
 	bool presionBoton();
 	void Restart();
