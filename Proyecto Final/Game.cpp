@@ -51,33 +51,22 @@ void Game::ProcesarEventos()
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Button::Left) {
                     if (presionBoton()) {
-                        restart();
+                        Restart();
+                        cout << "Apredato" << endl;
                         
                     }
                 }break;
-            default:break;
-           
-                
-
-
-
-
+            default:break;              
         }           
-                
         
-       
-
-         
     }
 
 }
 void Game::Actualizar(float dt)
-{
-        
+{        
     if (pasaronSeg == true) {
         terminarJuego();
     }
-
     //NAVE
     nave->Update(dt);
     if (nave->getPosicion().x >= tope.x) {//si nave llega a cierta posicion en X
@@ -94,31 +83,25 @@ void Game::Actualizar(float dt)
         vueltaNave->play();
     }
     //PERSONAJE
-    pj->Update(dt);
-    
+    pj->Update(dt);    
     //RAYO  
     if ((nave->rayoCayendo != true)) {//Si el rayo no esta cayendo, llamo el metodo tirar rayo, y pongo rayo cayendo en true.
         rayo = nave->tirarRayo();
         nave->rayoCayendo = true;
         caidaRayo->play();
         
-    }
-    
+    }    
     rayo->Update(dt);
-
     aparecerCorazon();
-
     if (rayo->getPosition().y > 600.0f) {//Si rayo supera los 600 en el eje Y, lo rayo cayendo en false.
         nave->rayoCayendo = false;
 
-    }
-       
+    }       
     if ((nave->rayoCayendo) && (pj->pjon)) {
         ProcesarColisiones(ventana);
     }
     
 }
-
 
 void Game::Dibujar()
 {
@@ -137,16 +120,12 @@ void Game::Dibujar()
     rayo->Draw(ventana);
     
     corazon->Draw(ventana);
-        
-     
-    
-    
+
     if (pasaronSeg == true) {
         ventana->draw(*perdistes);
         vueltaNave->stop();
         caidaRayo->stop();
     }
-        
     ventana->draw(*vidass);
     ventana->draw(*corazoness1);
     ventana->draw(*corazoness2);
@@ -174,14 +153,11 @@ void Game::ProcesarColisiones(RenderWindow *ventana) {
             corazoness1->setPosition(3000, 3000);
             nave->setPosicion(Vector2f(3000.0f, 3000.0f));
             terminar->restart().asSeconds();
-
             perdiste->play();
-
             pasaronSeg = true;
 
         }
         nave->rayoCayendo = false;
-        
     }
     if (corazon->getSprite().getGlobalBounds().intersects(pj->getSprite().getGlobalBounds())) {
         corazon->setPosicion(Vector2f(1000.0f, 1000.0f));
@@ -200,8 +176,6 @@ void Game::ProcesarColisiones(RenderWindow *ventana) {
         
 }
 
-
-
 void Game::terminarJuego(){
     
     *timeTerminar = terminar->getElapsedTime();
@@ -216,9 +190,7 @@ void Game::terminarJuego(){
 
 }
 
-void Game::aparecerCorazon() {
-
-    
+void Game::aparecerCorazon() { 
 
     if (contador <= 2) {
         int numRand = rand() % 600 + 1;
@@ -231,8 +203,7 @@ void Game::aparecerCorazon() {
     }
     
     if (respCorazon == true) {
-        
-        
+          
 
         *tiempoCorazon = sacarCorazon->getElapsedTime();
 
@@ -246,9 +217,6 @@ void Game::aparecerCorazon() {
     
 }
 
-
-
-
 bool Game::presionBoton() {
     posicion_mouse = Mouse::getPosition(*ventana);
     posicion_mouse = (Vector2i)ventana->mapPixelToCoords(posicion_mouse);
@@ -257,4 +225,21 @@ bool Game::presionBoton() {
     return botons->getGlobalBounds().contains(mousepos.x, mousepos.y);
         
 }
-Game::~Game() {}
+
+void Game::Restart() {
+    contador == 3;
+    corazoness1->setPosition(150.0f, 5.0f);
+    corazoness2->setPosition(180.0f, 5.0f);
+    corazoness3->setPosition(210.0f, 5.0f);
+    nave->setPosicion(Vector2f(0.0f, 0.0f));
+    pj->setPosicion(Vector2f(300.0f, 426.0f));
+    
+}
+
+Game::~Game() {
+    delete ventana;
+    delete rayo;
+    delete nave;
+    delete corazon;
+
+}

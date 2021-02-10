@@ -18,18 +18,14 @@ using namespace std;
 
 
 class Game {
-
 	
-
-
-
 public:
 	Game() {
-		ventana = new RenderWindow(VideoMode(800, 600), "");
-		ventana->setFramerateLimit(60);
-		fondo.loadFromFile("fondo.png");
-		fondos.setTexture(fondo);
-		srand(time(NULL));
+		ventana = new RenderWindow(VideoMode(800, 600), "El Veloz");//Creo ventana con un tamaño de 800x600
+		ventana->setFramerateLimit(60);//Seteo fraps por segundo maximos.
+		fondo.loadFromFile("fondo.png");//Cargo el fondo como textura.
+		fondos.setTexture(fondo);//cargo el fondo como sprite.
+		srand(time(NULL));//Refresco semillas para el rand()
 
 		//NAVE
 		nave = new Nave("nave.png");
@@ -110,10 +106,12 @@ public:
 	void Dibujar();
 	void ProcesarColisiones(RenderWindow* ventan);
 	void terminarJuego();
-	void aparecerCorazon();
-	
+	void aparecerCorazon();	
 	bool presionBoton();
-	bool restart() { return true; };
+	void Restart();
+	
+	
+
 private:
 	//topes nave
 	Vector2f tope;

@@ -6,7 +6,7 @@ Personaje::Personaje(string filename){
 	personajes = new Sprite();
 	personajet->loadFromFile(filename);
 	personajes->setTexture(*personajet);
-	personajes->setPosition(Vector2f(300, 426));
+	personajes->setPosition(Vector2f(300.0f, 426.0f));
 	posicion.x = 0.0f;
 	posicion.y = 0.0f;
 	velocidad.x = 0.0f;
