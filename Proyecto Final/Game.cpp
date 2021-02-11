@@ -9,6 +9,17 @@ void Game::Loop() {
     while (ventana->isOpen())
     {
         float dt = clock.restart().asSeconds();
+        *timeTerminar = terminar->getElapsedTime();
+        
+        if (timeTerminar->asSeconds() >= 30.0f) {//si pasan 30 segundos y no moriste, GANAS!
+            nave->setPosicion(Vector2f(3000.0f, 3000.0f));
+            terminar->restart().asSeconds();
+            pasaronSeg = true;//Pasaron segundos en true para qe dibuje el ganaste
+            fingan = true;//fingan en true, para que se active el metodo ganaste(), y termine el juego.
+           
+        }
+        
+         
         
         ProcesarEventos();// Procesar eventos
         
@@ -26,6 +37,9 @@ void Game::Loop() {
 }
 void Game::ProcesarEventos()
 {
+    
+    
+
     sf::Event event;
     while (ventana->pollEvent(event))
     {
@@ -52,6 +66,7 @@ void Game::ProcesarEventos()
                 if (event.mouseButton.button == Mouse::Button::Left) {
                     if (presionBoton()) {//si presiono boton es true, osea, retorna el getglobal del sprite en colision con el mouse.
                         Restart();
+                        
                     }
                 }break;
             default:break;              
@@ -60,8 +75,10 @@ void Game::ProcesarEventos()
     }
 
 }
-void Game::Actualizar(float dt)
-{        
+void Game::Actualizar(float dt){ 
+
+    Ganaste();
+
     if (pasaronSeg == true) {//Termino juego.
         terminarJuego();
     }
@@ -123,7 +140,13 @@ void Game::Dibujar()
     corazon->Draw(ventana);
 
     if (pasaronSeg == true) {//Dibujo el sprite perdiste, y silencio los sonidos.
-        ventana->draw(*perdistes);
+        if (contador == 0) {
+            ventana->draw(*perdistes);
+        }
+        else {
+            ventana->draw(*ganastes);
+        }
+            
         vueltaNave->stop();
         caidaRayo->stop();
     }
@@ -158,9 +181,12 @@ void Game::ProcesarColisiones() {
             pasaronSeg = true;//Al pasar ciertos segundos, cierro la ventana.
 
         }
+        
+        
         nave->rayoCayendo = false;//pongo rayo cayendo el false, para volverlo a respawnear.
     }
     if (corazon->getSprite().getGlobalBounds().intersects(pj->getSprite().getGlobalBounds())) {//Si corazon se intersecta con el jugador.
+        pickCora->play();
         corazon->setPosicion(Vector2f(1000.0f, 1000.0f));//Saco el corazon de pantalla
         posRand.x = 50 + rand() % (599 - 50);//Y saco un nuevo rand;
         respCorazon = false; //pongo en false para que se vuelva a respawnear.
@@ -186,6 +212,16 @@ void Game::terminarJuego(){//Metodo termina juego, si pasaron unos segundos, pon
         juegoterminado = true;
 
     }
+    
+}
+void Game::Ganaste() {
+    *timeTerminar = terminar->getElapsedTime();//Tiempo transcurrido, luego del reinicio del timing cuando llega a 30 seg.
+    
+    if (timeTerminar->asSeconds() >= 3.0f && fingan == true && contador > 0) {
+        
+        juegoterminado = true;
+    }
+    
     
 }
 
@@ -233,7 +269,7 @@ void Game::Restart() {//Al presionar el boton, se ejecuta el metodo y reinciia l
     corazoness3->setPosition(210.0f, 5.0f);
     nave->setPosicion(Vector2f(0.0f, 0.0f));
     nave->rayoCayendo = false;
-    pj->setPosicion(Vector2f(300.0f, 426.0f));
+    pj->setPosicion(Vector2f(300.0f, 426.0f));      
     
 }
 

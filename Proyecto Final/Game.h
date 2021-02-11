@@ -26,13 +26,13 @@ public:
 		fondo.loadFromFile("fondo.png");//Cargo el fondo como textura.
 		fondos.setTexture(fondo);//cargo el fondo como sprite.
 		srand(time(NULL));//Refresco semillas para el rand()
-
+		
 		//NAVE
 		nave = new Nave("nave.png");
 		nave->setPosicion(Vector2f(0.0f, 0.0f));//seteo posicion de la nave.
-		tope.x = 600;//tope de la nave para su vuelta hacia el otro lado.
+		tope.x = 650;//tope de la nave para su vuelta hacia el otro lado.
 		tope.y = 0;
-		inicio.x = 0;
+		inicio.x = -100;
 		inicio.y = 0;
 
 		//PERSONAJE
@@ -75,11 +75,18 @@ public:
 		//TERMINAR JUEGO
 		terminar = new Clock();//timing para terminar el juego.
 		timeTerminar = new Time();
+		
 		perdistes = new Sprite();//Sprite al finalizar el juego.
 		perdistet = new Texture();
 		perdistet->loadFromFile("perdiste.png");
 		perdistes->setTexture(*perdistet);		
 		perdistes->setPosition(200.0f, 200.0f);
+		ganastet = new Texture();
+		ganastes = new Sprite();
+		ganastet->loadFromFile("ganaste.png");
+		ganastes->setTexture(*ganastet);
+		ganastes->setPosition(300, 280);
+		
 		
 		//Corazon
 		corazon = new Corazon();//Instancio corazon luego de perder 1 vida, para poder recuperarlas.
@@ -87,6 +94,11 @@ public:
 		tiempoCorazon = new Time();
 		posRand.x = 50 + rand() % (599 - 50);//Posicion random donde aparecer.
 		posRand.y = 540.0f;//que siempre aparezca a la misma altura en el eje Y.
+		bufferCora = new SoundBuffer;
+		pickCora = new Sound;
+		bufferCora->loadFromFile("agarrarcorazon.wav");
+		pickCora->setBuffer(*bufferCora);
+		pickCora->setVolume(5.0f);
 
 		//Boton Restart
 		botont = new Texture();//Textura boton restart.
@@ -95,7 +107,9 @@ public:
 		botons->setTexture(*botont);		
 		botons->setPosition(750.0f, 0.0f);
 
-
+		
+		
+		
 		
 	}
 	~Game();//Destructor
@@ -108,7 +122,8 @@ public:
 	void aparecerCorazon();	
 	bool presionBoton();
 	void Restart();
-	
+	void Ganaste();
+	bool fingan = false;
 	
 
 private:
@@ -140,6 +155,8 @@ private:
 	Sound* caidaRayo;	
 	SoundBuffer* bufferPerdiste;
 	Sound* perdiste;
+	SoundBuffer* bufferCora;
+	Sound* pickCora;
 	//Vidas
 	Texture* vidast;
 	Sprite* vidass;
@@ -154,10 +171,12 @@ private:
 	bool pasaronSeg = false;
 	Texture* perdistet;
 	Sprite* perdistes;
-
+	Texture* ganastet;
+	Sprite* ganastes;
+	Clock* timingGanaste;
 	Clock* terminar;
 	Time* timeTerminar;
-
+	
 	//Boton restart
 	Vector2i posicion_mouse;
 	Texture* botont;

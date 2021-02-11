@@ -13,20 +13,20 @@ Rayo::Rayo(Vector2f nave) {
 
 	switch (rand() % 13 + 1 ) {//Velocidad random cada vez que instancio un rayo.
 		case 1:
-		 velocidad.y = 100.0f;
-		 aceleracion.y = 100.0f; break;
+		 velocidad.y = 200.0f;
+		 aceleracion.y = 500.0f; break;
 		 
 		case 2:
-			velocidad.y = 200.0f;
-			aceleracion.y = 200.0f; break;
+			velocidad.y = 400.0f;
+			aceleracion.y = 400.0f; break;
 			
 		case 3:
-			velocidad.y = 50.0f;
+			velocidad.y = 100.0f;
 			aceleracion.y = 300.0f; break;
 			
 		case 4:
-			velocidad.y = 100.0f;
-			aceleracion.y = 20.0f; break;
+			velocidad.y = 500.0f;
+			aceleracion.y = 3000.0f; break;
 			
 		case 5:
 			velocidad.y = 300.0f;
@@ -41,7 +41,7 @@ Rayo::Rayo(Vector2f nave) {
 			aceleracion.y = 500.0f; break;
 			
 		case 8:
-			velocidad.y = 50.0f;
+			velocidad.y = 800.0f;
 			aceleracion.y = 800.0f; break;
 			
 		case 9:
