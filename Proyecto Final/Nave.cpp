@@ -7,9 +7,9 @@ Nave::Nave(string filename) {//seteo la textura al instanciar el objeto en Game.
 	naves->setTexture(*navet);
 	posicion.x = 0.0f;
 	posicion.y = 0.0f;
-	velocidad.x = 50.0f;
+	velocidad.x = 100.0f;
 	velocidad.y = 0.0f;
-	aceleracion.x = 10.0f;
+	aceleracion.x = 100.0f;
 	aceleracion.y = 0.0f;
 	navet2 = new Texture();
 	navet2->loadFromFile("nave2.png");

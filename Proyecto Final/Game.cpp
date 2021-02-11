@@ -11,7 +11,7 @@ void Game::Loop() {
         float dt = clock.restart().asSeconds();
         *timeTerminar = terminar->getElapsedTime();
         
-        if (timeTerminar->asSeconds() >= 30.0f) {//si pasan 30 segundos y no moriste, GANAS!
+        if (timeTerminar->asSeconds() >= 40.0f) {//si pasan 30 segundos y no moriste, GANAS!
             nave->setPosicion(Vector2f(3000.0f, 3000.0f));
             terminar->restart().asSeconds();
             pasaronSeg = true;//Pasaron segundos en true para qe dibuje el ganaste
@@ -85,15 +85,15 @@ void Game::Actualizar(float dt){
     //NAVE
     nave->Update(dt);
     if (nave->getPosicion().x >= tope.x) {//si nave llega a cierta posicion en X
-        nave->setVelocidad(Vector2f(-50.0f, 0.0f));//setea velocidad negativa, para que vuelva hacia el otro lado.
-        nave->setAceleracion(Vector2f(-50.0f, 0.0f));//setea la aceleracion para que tenga mas velocidad
+        nave->setVelocidad(Vector2f(-(rand() % 300 + 50), 0.0f));//setea velocidad negativa, para que vuelva hacia el otro lado.ENTRE 500 Y 100
+        nave->setAceleracion(Vector2f(-(rand() % 300 + 50), 0.0f));//setea la aceleracion para que tenga mas velocidad//ENTRE 500 Y 100
         nave->setTextura("nave2.png");
         vueltaNave->play();
 
     }
     else if (nave->getPosicion().x <= inicio.x) {
-        nave->setVelocidad(Vector2f(50.0f, 0.0f));//setea velocidad negativa, para que vuelva hacia el otro lado.
-        nave->setAceleracion(Vector2f(50.0f, 0.0f));//setea la aceleracion para que tenga mas velocidad.
+        nave->setVelocidad(Vector2f(rand() % 300 + 50, 0.0f));//setea velocidad negativa, para que vuelva hacia el otro lado.
+        nave->setAceleracion(Vector2f(rand() % 300 + 50, 0.0f));//setea la aceleracion para que tenga mas velocidad.
         nave->setTextura2("nave.png");//Cambio de sprite para que aparezca en base al lado que se dirige.
         vueltaNave->play();
     }
@@ -226,10 +226,10 @@ void Game::Ganaste() {
 }
 
 void Game::aparecerCorazon() { //Metodo que aparece corazon de forma random, para obtener vidas perdidas.
-
+    
     if (contador <= 2) {
         int numRand = rand() % 600 + 1;
-        if (numRand == 4 && respCorazon == false) {//Si el numero random es 4 y respawnear coraon es falso, respawnea corazon y el tiempo lo reinicia para respawnearo otro.
+        if (numRand == 5 && respCorazon == false) {//Si el numero random es 4 y respawnear coraon es falso, respawnea corazon y el tiempo lo reinicia para respawnearo otro.
             respCorazon = true;
             sacarCorazon->restart().asSeconds();
             

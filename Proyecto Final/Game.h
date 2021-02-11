@@ -29,7 +29,7 @@ public:
 		
 		//NAVE
 		nave = new Nave("nave.png");
-		nave->setPosicion(Vector2f(0.0f, 0.0f));//seteo posicion de la nave.
+		nave->setPosicion(Vector2f(300.0f, 0.0f));//seteo posicion de la nave.
 		tope.x = 650;//tope de la nave para su vuelta hacia el otro lado.
 		tope.y = 0;
 		inicio.x = -100;

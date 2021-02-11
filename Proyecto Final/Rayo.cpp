@@ -21,7 +21,7 @@ Rayo::Rayo(Vector2f nave) {
 			aceleracion.y = 400.0f; break;
 			
 		case 3:
-			velocidad.y = 100.0f;
+			velocidad.y = 200.0f;
 			aceleracion.y = 300.0f; break;
 			
 		case 4:

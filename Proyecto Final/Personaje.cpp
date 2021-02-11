@@ -7,7 +7,7 @@ Personaje::Personaje(string filename){
 	personajet->loadFromFile(filename);
 	personajes->setTexture(*personajet);
 	personajes->setPosition(Vector2f(300.0f, 426.0f));
-	posicion.x = 0.0f;
+	posicion.x = 300.0f;
 	posicion.y = 0.0f;
 	velocidad.x = 0.0f;
 	velocidad.y = 0.0f;
@@ -28,7 +28,7 @@ void Personaje::Draw(RenderWindow* _ventana) {
 	
 }
 
-void Personaje::Update(float dt) {
+void Personaje::Update(float dt) {//Delta time: tiempo transcurrido luego de cada frame
 
 	velocidad.x += aceleracion.x * dt;//Movimiento en el eje X.
 	posicion.x += velocidad.x * dt;
