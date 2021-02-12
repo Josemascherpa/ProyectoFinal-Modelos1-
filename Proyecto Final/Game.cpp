@@ -2,37 +2,46 @@
 
 void Game::Loop() {
     // Start the game loop
-
+   
     Clock clock;
     clock.restart();
     float dt;
-    while (ventana->isOpen())
-    {
-        float dt = clock.restart().asSeconds();
-        *timeTerminar = terminar->getElapsedTime();
         
-        if (timeTerminar->asSeconds() >= 40.0f) {//si pasan 30 segundos y no moriste, GANAS!
-            nave->setPosicion(Vector2f(3000.0f, 3000.0f));
-            terminar->restart().asSeconds();
-            pasaronSeg = true;//Pasaron segundos en true para qe dibuje el ganaste
-            fingan = true;//fingan en true, para que se active el metodo ganaste(), y termine el juego.
-           
-        }
-        
-         
-        
-        ProcesarEventos();// Procesar eventos
-        
-        Actualizar(dt);// Actualizar el juego
-        
-        Dibujar();// Dibujar el juego
+        while (ventana->isOpen())
+        {
+            float dt = clock.restart().asSeconds();
+            *timeTerminar = terminar->getElapsedTime();
 
-        if (juegoterminado == true) {
+            presen = true;
+            if (timeTerminar->asSeconds() >= 40.0f) {//si pasan 30 segundos y no moriste, GANAS!
+                nave->setPosicion(Vector2f(3000.0f, 3000.0f));
+                terminar->restart().asSeconds();
+                pasaronSeg = true;//Pasaron segundos en true para qe dibuje el ganaste
+                fingan = true;//fingan en true, para que se active el metodo ganaste(), y termine el juego.
+
+            }
+            if (presen == true) {
+                ventana->clear();
+                ventana->draw(*presentacion);
+                ventana->display();
+            }
+
+            if (presen == false) {
+                ProcesarEventos();// Procesar eventos
+
+                Actualizar(dt);// Actualizar el juego
+
+                Dibujar();// Dibujar el juego
+            }
             
-            break;
-        }
 
-    }
+            if (juegoterminado == true) {
+
+                break;
+            }
+
+        }
+    
 
 }
 void Game::ProcesarEventos()
@@ -125,36 +134,39 @@ void Game::Dibujar()
 {
     // Limpiar la venatana
     ventana->clear();
-
-    // Dibujar el sprite
-    ventana->draw(fondos);
-
-    ventana->draw(*botons);
-
-    nave->Draw(ventana);
-
-    pj->Draw(ventana);
-
-    rayo->Draw(ventana);
     
-    corazon->Draw(ventana);
+               
+    // Dibujar el sprite
+    
+        ventana->draw(fondos);
 
-    if (pasaronSeg == true) {//Dibujo el sprite perdiste, y silencio los sonidos.
-        if (contador == 0) {
-            ventana->draw(*perdistes);
+        ventana->draw(*botons);
+
+        nave->Draw(ventana);
+
+        pj->Draw(ventana);
+
+        rayo->Draw(ventana);
+
+        corazon->Draw(ventana);
+
+        if (pasaronSeg == true) {//Dibujo el sprite perdiste, y silencio los sonidos.
+            if (contador == 0) {
+                ventana->draw(*perdistes);
+            }
+            else {
+                ventana->draw(*ganastes);
+            }
+
+            vueltaNave->stop();
+            caidaRayo->stop();
         }
-        else {
-            ventana->draw(*ganastes);
-        }
-            
-        vueltaNave->stop();
-        caidaRayo->stop();
-    }
-    ventana->draw(*vidass);
-    ventana->draw(*corazoness1);
-    ventana->draw(*corazoness2);
-    ventana->draw(*corazoness3);
-    // Actualizar la imagen de la ventana
+        ventana->draw(*vidass);
+        ventana->draw(*corazoness1);
+        ventana->draw(*corazoness2);
+        ventana->draw(*corazoness3);
+  
+    //Actualizar la imagen de la ventana
     ventana->display();
 }
 
@@ -272,6 +284,7 @@ void Game::Restart() {//Al presionar el boton, se ejecuta el metodo y reinciia l
     pj->setPosicion(Vector2f(300.0f, 426.0f));      
     
 }
+
 
 Game::~Game() {
     delete ventana;

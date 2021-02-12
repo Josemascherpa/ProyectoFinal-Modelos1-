@@ -1,49 +1,40 @@
 ﻿  Game.cpp
 C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(28,13): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(95,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(97,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
 C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(8,11): warning C4101: 'dt': variable local sin referencia
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(88,37): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(97,37): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(89,39): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(98,39): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(95,50): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(104,50): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(96,52): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(105,52): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(191,24): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(203,24): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(246,28): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(258,28): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(266,14): warning C4553: "==": el resultado de la expresión no se usa. ¿Quiso decir "="?
-  Main.cpp
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(28,13): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.h(95,18): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-  Personaje.cpp
-  Generando código...
+C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Proyecto Final\Game.cpp(278,14): warning C4553: "==": el resultado de la expresión no se usa. ¿Quiso decir "="?
   Proyecto Final.vcxproj -> C:\Users\nacho\OneDrive\Escritorio\Facu\git\ProyectoFinal-Modelos1-\Debug\Proyecto Final.exe

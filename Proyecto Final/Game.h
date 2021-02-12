@@ -26,6 +26,8 @@ public:
 		fondo.loadFromFile("fondo.png");//Cargo el fondo como textura.
 		fondos.setTexture(fondo);//cargo el fondo como sprite.
 		srand(time(NULL));//Refresco semillas para el rand()
+
+
 		
 		//NAVE
 		nave = new Nave("nave.png");
@@ -107,8 +109,13 @@ public:
 		botons->setTexture(*botont);		
 		botons->setPosition(750.0f, 0.0f);
 
-		
-		
+		//PRESENTACION
+		present = new Texture();
+		presentacion = new Sprite();
+		present->loadFromFile("presentacion.png");
+		presentacion->setTexture(*present);
+		presentacion->setPosition(0.0f, 0.0f);
+
 		
 		
 	}
@@ -124,9 +131,14 @@ public:
 	void Restart();
 	void Ganaste();
 	bool fingan = false;
+	bool presen = false;
 	
 
 private:
+
+	Texture* present;
+	Sprite* presentacion;
+
 	//topes nave
 	Vector2f tope;
 	Vector2f inicio;

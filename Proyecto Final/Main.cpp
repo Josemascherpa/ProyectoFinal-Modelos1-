@@ -7,6 +7,7 @@ using namespace std;
 
 int main() {
 	
+	
 	Game G;
 
 	G.Loop();
