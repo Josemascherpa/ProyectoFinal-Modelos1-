@@ -24,9 +24,11 @@ void Game::Loop() {
                 ventana->clear();
                 ventana->draw(*presentacion);
                 ventana->display();
+                ventana->setMouseCursorVisible(false);
             }
 
             if (presen == false) {
+                ventana->setMouseCursorVisible(true);
                 ProcesarEventos();// Procesar eventos
 
                 Actualizar(dt);// Actualizar el juego
