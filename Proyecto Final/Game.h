@@ -115,8 +115,10 @@ public:
 		present->loadFromFile("presentacion.png");
 		presentacion->setTexture(*present);
 		presentacion->setPosition(0.0f, 0.0f);
-
 		
+
+		presentacionC = new Clock();
+		presentacionT = new Time();
 		
 	}
 	~Game();//Destructor
@@ -193,6 +195,12 @@ private:
 	Vector2i posicion_mouse;
 	Texture* botont;
 	Sprite* botons;
+
+
+	//PRESENTACION
+
+	Clock *presentacionC;
+	Time *presentacionT;
 	
 };
 

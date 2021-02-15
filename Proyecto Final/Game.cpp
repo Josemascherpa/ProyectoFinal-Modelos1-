@@ -13,32 +13,48 @@ void Game::Loop() {
             *timeTerminar = terminar->getElapsedTime();
 
             presen = true;
-            if (timeTerminar->asSeconds() >= 40.0f) {//si pasan 30 segundos y no moriste, GANAS!
-                nave->setPosicion(Vector2f(3000.0f, 3000.0f));
-                terminar->restart().asSeconds();
-                pasaronSeg = true;//Pasaron segundos en true para qe dibuje el ganaste
-                fingan = true;//fingan en true, para que se active el metodo ganaste(), y termine el juego.
+            
+            *presentacionT = presentacionC->getElapsedTime();
 
-            }
             if (presen == true) {
+                
                 ventana->clear();
                 ventana->draw(*presentacion);
-                ventana->display();
-                ventana->setMouseCursorVisible(false);
+                ventana->display();                 
+                if (presentacionT->asSeconds() >= 5.0f) {
+                    presentacion->setPosition(1000.0f, 1000.0f);
+                    presen = false;                    
+                }
+                              
+                
             }
-
+            
             if (presen == false) {
-                ventana->setMouseCursorVisible(true);
-                ProcesarEventos();// Procesar eventos
+                
+                while (presen == false) {
+                    if (timeTerminar->asSeconds() >= 50.0f) {//si pasan 30 segundos y no moriste, GANAS!
+                        nave->setPosicion(Vector2f(3000.0f, 3000.0f));
+                        terminar->restart().asSeconds();
+                        pasaronSeg = true;//Pasaron segundos en true para qe dibuje el ganaste
+                        fingan = true;//fingan en true, para que se active el metodo ganaste(), y termine el juego.
 
-                Actualizar(dt);// Actualizar el juego
+                    }
+                    ventana->setMouseCursorVisible(true);
+                    ProcesarEventos();// Procesar eventos
 
-                Dibujar();// Dibujar el juego
+                    Actualizar(dt);// Actualizar el juego
+
+                    Dibujar();// Dibujar el juego.
+                    if (juegoterminado == true) {
+                        break;
+                    }
+                }
+                
             }
             
 
             if (juegoterminado == true) {
-
+                
                 break;
             }
 
