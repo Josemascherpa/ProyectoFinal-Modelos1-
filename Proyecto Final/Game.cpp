@@ -17,11 +17,11 @@ void Game::Loop() {
             *presentacionT = presentacionC->getElapsedTime();
 
             if (presen == true) {
-                
+                ventana->setMouseCursorVisible(false);
                 ventana->clear();
                 ventana->draw(*presentacion);
                 ventana->display();                 
-                if (presentacionT->asSeconds() >= 5.0f) {
+                if (presentacionT->asSeconds() >= 10.0f) {
                     presentacion->setPosition(1000.0f, 1000.0f);
                     presen = false;                    
                 }
@@ -32,7 +32,7 @@ void Game::Loop() {
             if (presen == false) {
                 
                 while (presen == false) {
-                    if (timeTerminar->asSeconds() >= 50.0f) {//si pasan 30 segundos y no moriste, GANAS!
+                    if (timeTerminar->asSeconds() >= 65.0f) {//si pasan 30 segundos y no moriste, GANAS!
                         nave->setPosicion(Vector2f(3000.0f, 3000.0f));
                         terminar->restart().asSeconds();
                         pasaronSeg = true;//Pasaron segundos en true para qe dibuje el ganaste
