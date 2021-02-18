@@ -115,11 +115,20 @@ public:
 		present->loadFromFile("presentacion.png");
 		presentacion->setTexture(*present);
 		presentacion->setPosition(0.0f, 0.0f);
-		
+		musica = new Music();
+		musica->openFromFile("musica.ogg");
+		musica->play();
+		musica->setVolume(3);
 
 		presentacionC = new Clock();
 		presentacionT = new Time();
-		
+
+		//Ganaste
+		ganastett = new SoundBuffer();
+		ganastess = new Sound();
+		ganastett->loadFromFile("ganaste.wav");
+		ganastess->setBuffer(*ganastett);
+		ganastess->setVolume(0.6);
 	}
 	~Game();//Destructor
 	void Loop();
@@ -198,9 +207,13 @@ private:
 
 
 	//PRESENTACION
-
+	Music *musica;
 	Clock *presentacionC;
 	Time *presentacionT;
+
+	//Ganaste
+	SoundBuffer* ganastett;
+	Sound* ganastess;
 	
 };
 

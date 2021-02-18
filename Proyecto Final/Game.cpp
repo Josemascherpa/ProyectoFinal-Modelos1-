@@ -10,29 +10,28 @@ void Game::Loop() {
         while (ventana->isOpen())
         {
             float dt = clock.restart().asSeconds();
-            *timeTerminar = terminar->getElapsedTime();
+            *timeTerminar = terminar->getElapsedTime();//guardo tiempo para cerrar el juego
+
+            *presentacionT = presentacionC->getElapsedTime();//guardo tiempo para la presentacion
 
             presen = true;
-            
-            *presentacionT = presentacionC->getElapsedTime();
-
             if (presen == true) {
-                ventana->setMouseCursorVisible(false);
+                ventana->setMouseCursorVisible(false);//Escondo el cursor
                 ventana->clear();
                 ventana->draw(*presentacion);
                 ventana->display();                 
-                if (presentacionT->asSeconds() >= 10.0f) {
+                if (presentacionT->asSeconds() >= 8.0f) {
                     presentacion->setPosition(1000.0f, 1000.0f);
-                    presen = false;                    
+                    presen = false;          
+                    musica->setVolume(0.5);
                 }
-                              
-                
+                                              
             }
             
             if (presen == false) {
                 
                 while (presen == false) {
-                    if (timeTerminar->asSeconds() >= 65.0f) {//si pasan 30 segundos y no moriste, GANAS!
+                    if (timeTerminar->asSeconds() >= 58.0f) {//si pasan 50 segundos y no moriste, GANAS!
                         nave->setPosicion(Vector2f(3000.0f, 3000.0f));
                         terminar->restart().asSeconds();
                         pasaronSeg = true;//Pasaron segundos en true para qe dibuje el ganaste
@@ -96,6 +95,7 @@ void Game::ProcesarEventos()
                         
                     }
                 }break;
+
             default:break;              
         }           
         
@@ -173,6 +173,7 @@ void Game::Dibujar()
                 ventana->draw(*perdistes);
             }
             else {
+                ganastess->play();
                 ventana->draw(*ganastes);
             }
 
@@ -292,14 +293,14 @@ bool Game::presionBoton() {//recupero la posicion del mouse en la ventana, y la 
         
 }
 
-void Game::Restart() {//Al presionar el boton, se ejecuta el metodo y reinciia las variables.
-    contador == 3;
+void Game::Restart() {//Al presionar el boton, se ejecuta el metodo y reincia las variables.
+    contador = 3;
     corazoness1->setPosition(150.0f, 5.0f);
     corazoness2->setPosition(180.0f, 5.0f);
     corazoness3->setPosition(210.0f, 5.0f);
     nave->setPosicion(Vector2f(0.0f, 0.0f));
     nave->rayoCayendo = false;
-    pj->setPosicion(Vector2f(300.0f, 426.0f));      
+    pj->setPosicion(Vector2f(300.0f, 426.0f));    
     
 }
 
