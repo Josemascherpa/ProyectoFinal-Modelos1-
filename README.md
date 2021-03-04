@@ -3,7 +3,7 @@
 *Un juego realizado con la libreria SFML estática y lo aprendido en la facultad con la materia Modelos y Algoritmos 1.*
 
 ### Deploy:
-El proyecto ya viene con la libreria SFML 32 bits,se debe tener instalado visual studio. Se descarga el .zip, se abre el codigo y se depura 
+El proyecto ya viene con la libreria SFML 32 bits,pero igual se la debe tener instalada.Se debe tener instalado visual studio. Se descarga el .zip, se abre el codigo y se depura 
 desde el VStudio.
 
 #### Videojuego:
